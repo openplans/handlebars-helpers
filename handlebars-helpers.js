@@ -31,4 +31,21 @@
     return '';
   });
 
+  // Iteration ----------------------------------------------------------------
+  Handlebars.registerHelper('times', function(n, options) {
+    var accum = '', i;
+    for(i = 0; i < n; ++i){
+      accum += options.fn(i);
+    }
+    return accum;
+  });
+
+  Handlebars.registerHelper('range', function(from, to, options) {
+    var accum = '', i;
+    for(i = from; i < to; i++){
+      accum += options.fn(i);
+    }
+    return accum;
+  });
+
 }());
