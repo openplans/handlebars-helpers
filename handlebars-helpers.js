@@ -1,6 +1,6 @@
-/*globals Handlebars, moment */
+/*globals Handlebars, moment, jQuery */
 
-(function() {
+(function($) {
   // Get the current url
   Handlebars.registerHelper('windowLocation', function(place_id) {
     return window.location;
@@ -48,4 +48,25 @@
     return accum;
   });
 
-}());
+  // HTML ---------------------------------------------------------------------
+  Handlebars.registerHelper('select', function(value, options) {
+    var $el = $('<div/>').html(options.fn(this)),
+      selectValue = function(v) {
+        $el.find('[value="'+v+'"]').attr({
+          checked: 'checked',
+          selected: 'selected'
+        });
+      };
+
+    if ($.isArray(value)) {
+      jQuery.each(function(i, v) {
+        selectValue(v);
+      });
+    } else {
+      selectValue(value);
+    }
+
+    return $el.html();
+  });
+
+}(jQuery));
