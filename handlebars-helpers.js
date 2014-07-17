@@ -41,8 +41,10 @@
   });
 
   Handlebars.registerHelper('range', function(from, to, options) {
+    // Range is INCLUSIVE of the ends. Useful for things like
+    // pagination links.
     var accum = '', i;
-    for(i = from; i < to; i++){
+    for(i = from; i <= to; i++){
       accum += options.fn(i);
     }
     return accum;
