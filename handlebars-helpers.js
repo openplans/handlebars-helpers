@@ -61,7 +61,7 @@
       };
 
     if ($.isArray(value)) {
-      jQuery.each(function(i, v) {
+      jQuery.each(value, function(i, v) {
         selectValue(v);
       });
     } else {
